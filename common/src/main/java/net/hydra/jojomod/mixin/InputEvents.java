@@ -88,6 +88,8 @@ public abstract class InputEvents implements IInputEvents {
     protected InputEvents() {
     }
 
+    private int summonCount = 0;
+
     @Inject(method = "startAttack", at = @At("HEAD"), cancellable = true)
     public void roundaboutAttack(CallbackInfoReturnable<Boolean> ci) {
     }
@@ -958,11 +960,19 @@ public abstract class InputEvents implements IInputEvents {
                 }
                 //RoundaboutMod.LOGGER.info("px");
 
+
                     //RoundaboutMod.LOGGER.info("px");
                     if (roundabout$sameKeyOne(KeyInputRegistry.summonKey)) {
                         //((IGameRenderer)this.gameRenderer).roundabout$loadEffect(new ResourceLocation("shaders/post/spider.json"));
-                        KeyInputs.summonKey(player,((Minecraft) (Object) this));
+                        if (summonCount <= 10)
+                            summonCount++;
                     }
+                    else {
+                        if (1 <= summonCount && summonCount < 10)
+                            KeyInputs.summonKey(player, ((Minecraft) (Object) this));
+                        summonCount = 0;
+                    }
+
 
                 ((StandUser)player).roundabout$getStandPowers().visualFrameTick();
 
