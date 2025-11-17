@@ -6,6 +6,7 @@ import net.hydra.jojomod.access.IEntityAndData;
 import net.hydra.jojomod.access.IFatePlayer;
 import net.hydra.jojomod.access.IPlayerEntity;
 import net.hydra.jojomod.client.ClientNetworking;
+import net.hydra.jojomod.client.KeyInputRegistry;
 import net.hydra.jojomod.client.StandIcons;
 import net.hydra.jojomod.entity.projectile.RoadRollerEntity;
 import net.hydra.jojomod.entity.stand.StandEntity;
@@ -14,6 +15,7 @@ import net.hydra.jojomod.event.index.FateTypes;
 import net.hydra.jojomod.event.powers.StandPowers;
 import net.hydra.jojomod.event.powers.StandUser;
 import net.hydra.jojomod.event.powers.TimeStop;
+import net.hydra.jojomod.mixin.InputEvents;
 import net.hydra.jojomod.stand.powers.PowersAnubis;
 import net.hydra.jojomod.stand.powers.PowersCream;
 import net.hydra.jojomod.stand.powers.PowersSoftAndWet;
@@ -72,7 +74,7 @@ public class StandHudRender {
             float tickDelta = mc.getDeltaFrameTime();
 
             boolean standOn = ((StandUser) playerEntity).roundabout$getActive();
-            boolean renderIcons = (standOn || !FateTypes.isHuman(playerEntity)) && !ConfigManager.getClientConfig().dynamicSettings.hideGUI
+            boolean renderIcons = (standOn || !FateTypes.isHuman(playerEntity) || KeyInputRegistry.summonKey.isDown()) && !ConfigManager.getClientConfig().dynamicSettings.hideGUI
                     && !(ConfigManager.getClientConfig().enablePickyIconRendering && !((StandUser) playerEntity).roundabout$getStandPowers().hasCooldowns());
             if (renderIcons || presentX > 0.1){
                 if (!renderIcons){
@@ -96,7 +98,7 @@ public class StandHudRender {
                 //context.drawTexture(ARROW_ICON,x,y-2,0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
 
 
-                if (standOn){
+                if (standOn || (KeyInputRegistry.summonKey.isDown() && ConfigManager.getConfig().miscellaneousSettings.standlessAbilities)){
                     ((StandUser) playerEntity).roundabout$getStandPowers().renderIcons(context, x, y);
                 } else {
                     ((IFatePlayer) playerEntity).rdbt$getFatePowers().renderIcons(context, x, y);

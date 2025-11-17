@@ -88,7 +88,7 @@ public abstract class InputEvents implements IInputEvents {
     protected InputEvents() {
     }
 
-    private int summonCount = 0;
+    public int summonCount = 0;
 
     @Inject(method = "startAttack", at = @At("HEAD"), cancellable = true)
     public void roundaboutAttack(CallbackInfoReturnable<Boolean> ci) {
@@ -964,11 +964,13 @@ public abstract class InputEvents implements IInputEvents {
                     //RoundaboutMod.LOGGER.info("px");
                     if (roundabout$sameKeyOne(KeyInputRegistry.summonKey)) {
                         //((IGameRenderer)this.gameRenderer).roundabout$loadEffect(new ResourceLocation("shaders/post/spider.json"));
-                        if (summonCount <= 10)
+                        if (!ConfigManager.getConfig().miscellaneousSettings.standlessAbilities)
+                            KeyInputs.summonKey(player, ((Minecraft) (Object) this));
+                        else if (summonCount <= 10)
                             summonCount++;
                     }
-                    else {
-                        if (1 <= summonCount && summonCount < 10)
+                    else if (1 <= summonCount && ConfigManager.getConfig().miscellaneousSettings.standlessAbilities) {
+                        if (summonCount < 10)
                             KeyInputs.summonKey(player, ((Minecraft) (Object) this));
                         summonCount = 0;
                     }
@@ -977,6 +979,11 @@ public abstract class InputEvents implements IInputEvents {
                 ((StandUser)player).roundabout$getStandPowers().visualFrameTick();
 
                 if (rdbt$isInitialized(player)) {
+                    // To prevent summoning your stand if you just want to use an ability without it out.
+                    if (roundabout$sameKeyOne(KeyInputRegistry.abilityOneKey) || roundabout$sameKeyOne(KeyInputRegistry.abilityTwoKey)
+                            || roundabout$sameKeyOne(KeyInputRegistry.abilityThreeKey) || roundabout$sameKeyOne(KeyInputRegistry.abilityFourKey))
+                        summonCount = 10;
+
                     KeyInputs.MoveKey1(player, ((Minecraft) (Object) this), roundabout$sameKeyOne(KeyInputRegistry.abilityOneKey),
                             this.options);
 

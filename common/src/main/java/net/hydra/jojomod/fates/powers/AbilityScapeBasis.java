@@ -17,6 +17,7 @@ import net.hydra.jojomod.event.AbilityIconInstance;
 import net.hydra.jojomod.event.index.*;
 import net.hydra.jojomod.event.powers.*;
 import net.hydra.jojomod.item.ModItems;
+import net.hydra.jojomod.mixin.InputEvents;
 import net.hydra.jojomod.sound.ModSounds;
 import net.hydra.jojomod.stand.powers.elements.PowerContext;
 import net.hydra.jojomod.util.C2SPacketUtil;
@@ -1169,7 +1170,7 @@ public class AbilityScapeBasis {
 
     public void preButtonInput4(boolean keyIsDown, Options options){
         if (!hasStandActive(this.getSelf())) {
-            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed()  ) {
+            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed() && !KeyInputRegistry.summonKey.isDown()) {
                 ((StandUser) this.getSelf()).roundabout$setIdleTime(0);
                 buttonInput4(keyIsDown, options, FATE);
             }
@@ -1177,7 +1178,7 @@ public class AbilityScapeBasis {
     }
     public void preButtonInput3(boolean keyIsDown, Options options){
         if (!hasStandActive(this.getSelf())) {
-            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed()  ) {
+            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed() && !KeyInputRegistry.summonKey.isDown()) {
                 ((StandUser) this.getSelf()).roundabout$setIdleTime(0);
                 buttonInput3(keyIsDown, options, FATE);
             }
@@ -1186,7 +1187,7 @@ public class AbilityScapeBasis {
 
     public void preButtonInput2(boolean keyIsDown, Options options){
         if (!hasStandActive(this.getSelf())) {
-            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed()   ) {
+            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed() && !KeyInputRegistry.summonKey.isDown()) {
                 ((StandUser) this.getSelf()).roundabout$setIdleTime(0);
                 buttonInput2(keyIsDown, options, FATE);
             }
@@ -1195,7 +1196,7 @@ public class AbilityScapeBasis {
 
     public void preButtonInput1(boolean keyIsDown, Options options){
         if (!hasStandActive(this.getSelf())) {
-            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed()   ) {
+            if (!((TimeStop)this.getSelf().level()).CanTimeStopEntity(this.getSelf()) && !this.getStandUserSelf().roundabout$isPossessed() && !KeyInputRegistry.summonKey.isDown()) {
                 ((StandUser) this.getSelf()).roundabout$setIdleTime(0);
                 buttonInput1(keyIsDown, options, FATE);
             }
