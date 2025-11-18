@@ -89,9 +89,8 @@ public class KeyInputs {
         if (!((StandUser) player).roundabout$isSealed() && !((StandUser)player).roundabout$isPossessed()) {
             ((StandUser) player).roundabout$getStandPowers().preButtonInput4(keyIsDown, option);
         }
-        if (!FateTypes.isHuman(player)) {
+        if (!FateTypes.isHuman(player))
             ((IFatePlayer) player).rdbt$getFatePowers().preButtonInput4(keyIsDown, option);
-        }
     }
     public static void MoveKey3(Player player, Minecraft client, boolean keyIsDown, Options option){
         if (!((StandUser) player).roundabout$isSealed() && !((StandUser)player).roundabout$isPossessed()) {

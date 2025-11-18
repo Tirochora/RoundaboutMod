@@ -968,6 +968,11 @@ public abstract class InputEvents implements IInputEvents {
                             KeyInputs.summonKey(player, ((Minecraft) (Object) this));
                         else if (summonCount <= 10)
                             summonCount++;
+                        // Prevents summoning your stand if you used a key without it actually out.
+                        if ((roundabout$sameKeyOne(KeyInputRegistry.abilityOneKey) || roundabout$sameKeyOne(KeyInputRegistry.abilityTwoKey)
+                                || roundabout$sameKeyOne(KeyInputRegistry.abilityThreeKey) || roundabout$sameKeyOne(KeyInputRegistry.abilityFourKey))
+                        && !((StandUser)player).roundabout$getActive())
+                            summonCount = 10;
                     }
                     else if (1 <= summonCount && ConfigManager.getConfig().miscellaneousSettings.standlessAbilities) {
                         if (summonCount < 10)
@@ -979,10 +984,6 @@ public abstract class InputEvents implements IInputEvents {
                 ((StandUser)player).roundabout$getStandPowers().visualFrameTick();
 
                 if (rdbt$isInitialized(player)) {
-                    // To prevent summoning your stand if you just want to use an ability without it out.
-                    if (roundabout$sameKeyOne(KeyInputRegistry.abilityOneKey) || roundabout$sameKeyOne(KeyInputRegistry.abilityTwoKey)
-                            || roundabout$sameKeyOne(KeyInputRegistry.abilityThreeKey) || roundabout$sameKeyOne(KeyInputRegistry.abilityFourKey))
-                        summonCount = 10;
 
                     KeyInputs.MoveKey1(player, ((Minecraft) (Object) this), roundabout$sameKeyOne(KeyInputRegistry.abilityOneKey),
                             this.options);

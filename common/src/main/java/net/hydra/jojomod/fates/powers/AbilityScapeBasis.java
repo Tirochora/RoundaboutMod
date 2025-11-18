@@ -1076,7 +1076,7 @@ public class AbilityScapeBasis {
                 activatedPower = PowerContext.SKILL_1_GUARD;
                 else activatedPower = PowerContext.SKILL_1_NORMAL;
 
-            if (!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) && source == STAND || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities)
+            if ((!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities) && source == STAND)
                 KeyInputs.forceSummon(Minecraft.getInstance().player, keyIsDown);
             powerActivate(activatedPower);
         }
@@ -1103,7 +1103,7 @@ public class AbilityScapeBasis {
                 activatedPower = PowerContext.SKILL_2_GUARD;
                 else activatedPower = PowerContext.SKILL_2_NORMAL;
 
-            if (!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) && source == STAND || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities)
+            if ((!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities) && source == STAND)
                 KeyInputs.forceSummon(Minecraft.getInstance().player, keyIsDown);
             powerActivate(activatedPower);
         }
@@ -1130,7 +1130,7 @@ public class AbilityScapeBasis {
                 activatedPower = PowerContext.SKILL_3_GUARD;
                 else activatedPower = PowerContext.SKILL_3_NORMAL;
 
-            if (!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) && source == STAND || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities)
+            if ((!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities) && source == STAND)
                 KeyInputs.forceSummon(Minecraft.getInstance().player, keyIsDown);
             powerActivate(activatedPower);
         }
@@ -1157,7 +1157,7 @@ public class AbilityScapeBasis {
                 activatedPower = PowerContext.SKILL_4_GUARD;
                 else activatedPower = PowerContext.SKILL_4_NORMAL;
 
-            if (!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) && source == STAND || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities)
+            if ((!((StandUser) this.getSelf()).roundabout$getStandPowers().standlessAbilities().contains(activatedPower) || !ConfigManager.getConfig().miscellaneousSettings.standlessAbilities) && source == STAND)
                 KeyInputs.forceSummon(Minecraft.getInstance().player, keyIsDown);
             powerActivate(activatedPower);
         }
